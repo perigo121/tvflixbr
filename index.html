@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>TVFlix — IPTV Premium 8K</title>
+<meta name="description" content="+18.000 canais ao vivo e +120.000 filmes e séries em 4K/8K. Streaming mundial em Smart TVs, Android, Firestick, MAG e mais." />
+<meta property="og:title" content="TVFlix — IPTV Premium 8K" />
+<meta property="og:description" content="+18.000 canais, +120.000 títulos, em 4K/8K." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0f; --bg2:#11111a; --card:#15151f; --card2:#1a1a26;
+    --border:#26263a; --muted:#8a8aa3; --fg:#f5f5fa;
+    --primary:#ef2b2b; --primary2:#ff5a3c; --accent:#ffb347;
+    --grad:linear-gradient(135deg,#ef2b2b,#ff5a3c);
+    --glow:0 10px 40px -10px rgba(239,43,43,.55);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--fg);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .display{font-family:'Space Grotesk',Inter,sans-serif;font-weight:900;letter-spacing:-.02em}
+  .gradient{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .container{max-width:1200px;margin:0 auto;padding:0 24px}
+  .btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:14px 26px;font-weight:600;font-size:15px;transition:transform .2s,background .2s;cursor:pointer;border:0}
+  .btn-primary{background:var(--grad);color:#fff;box-shadow:var(--glow)}
+  .btn-primary:hover{transform:scale(1.05)}
+  .btn-ghost{background:rgba(255,255,255,.05);color:var(--fg);border:1px solid var(--border);backdrop-filter:blur(8px)}
+  .btn-ghost:hover{background:rgba(255,255,255,.1)}
+  .btn-outline{border:2px solid var(--primary);background:transparent;color:var(--fg)}
+  .btn-outline:hover{background:rgba(239,43,43,.1)}
+
+  /* NAV */
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(10,10,15,.7);backdrop-filter:blur(16px);border-bottom:1px solid rgba(38,38,58,.5)}
+  .nav-row{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+  .logo{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk';font-weight:900;font-size:22px}
+  .logo .ico{width:36px;height:36px;border-radius:12px;background:var(--grad);display:grid;place-items:center;box-shadow:var(--glow)}
+  .nav-links{display:none;gap:32px;font-size:14px;color:var(--muted);font-weight:500}
+  .nav-links a:hover{color:var(--fg)}
+  @media(min-width:768px){.nav-links{display:flex}.nav-cta{display:inline-flex}}
+  .nav-cta{display:none}
+  .mobile-toggle{background:none;border:0;color:var(--fg);font-size:24px;cursor:pointer}
+  @media(min-width:768px){.mobile-toggle{display:none}}
+  .mobile-menu{display:none;flex-direction:column;gap:12px;padding:16px 24px;border-top:1px solid rgba(38,38,58,.5)}
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{color:var(--muted);font-size:14px}
+
+  /* HERO */
+  .hero{position:relative;overflow:hidden;text-align:center;padding:80px 24px 120px}
+  .hero-bg{position:absolute;inset:0;z-index:-1}
+  .hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.3}
+  .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,15,.4),rgba(10,10,15,.8),var(--bg))}
+  .badge{display:inline-flex;align-items:center;gap:8px;border-radius:999px;border:1px solid rgba(239,43,43,.3);background:rgba(239,43,43,.1);padding:6px 16px;font-size:12px;color:var(--primary);font-weight:500}
+  .hero h1{margin-top:28px;font-size:clamp(40px,7vw,88px);line-height:1.05}
+  .hero p{margin:28px auto 0;max-width:640px;color:var(--muted);font-size:17px}
+  .hero-ctas{margin-top:36px;display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+  .hero-meta{margin-top:36px;display:flex;flex-wrap:wrap;justify-content:center;gap:8px 24px;font-size:12px;color:var(--muted)}
+  .hero-meta span{display:inline-flex;align-items:center;gap:6px}
+  .stars{color:var(--accent)}
+
+  /* FEATURES */
+  section.section{padding:80px 0}
+  .grid-4{display:grid;gap:20px;grid-template-columns:1fr}
+  @media(min-width:640px){.grid-4{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:1024px){.grid-4{grid-template-columns:repeat(4,1fr)}}
+  .feat{border:1px solid var(--border);background:var(--card);border-radius:16px;padding:24px;transition:.2s}
+  .feat:hover{border-color:rgba(239,43,43,.4);transform:translateY(-4px)}
+  .feat .ico{width:44px;height:44px;border-radius:12px;background:var(--grad);display:grid;place-items:center;box-shadow:var(--glow);font-size:20px}
+  .feat h3{margin-top:18px;font-family:'Space Grotesk';font-weight:700;font-size:18px}
+  .feat p{margin-top:8px;font-size:14px;color:var(--muted)}
+
+  /* HEADING */
+  .h-head{text-align:center;margin-bottom:48px}
+  .h-head .kicker{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--primary)}
+  .h-head h2{margin-top:12px;font-size:clamp(32px,5vw,52px)}
+  .h-head p{margin:16px auto 0;max-width:560px;color:var(--muted)}
+
+  /* PRICING */
+  .plans{display:grid;gap:24px;grid-template-columns:1fr}
+  @media(min-width:640px){.plans{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:1024px){.plans{grid-template-columns:repeat(4,1fr)}}
+  .plan{position:relative;border:1px solid var(--border);background:rgba(21,21,31,.5);border-radius:24px;padding:24px;transition:.2s}
+  .plan:hover{transform:translateY(-4px)}
+  .plan.pop{border-color:rgba(239,43,43,.6);background:var(--card);box-shadow:var(--glow)}
+  .plan .tag{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--grad);color:#fff;font-size:11px;font-weight:800;padding:4px 12px;border-radius:999px}
+  .plan .kicker{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--primary)}
+  .plan h3{margin-top:6px;font-family:'Space Grotesk';font-weight:700;font-size:22px}
+  .plan .old{color:var(--muted);text-decoration:line-through;font-size:14px;margin-top:16px}
+  .plan .price{font-family:'Space Grotesk';font-weight:900;font-size:38px}
+  .plan .month{color:var(--primary);font-size:14px;margin-top:4px}
+  .plan ul{list-style:none;margin-top:24px;display:flex;flex-direction:column;gap:8px}
+  .plan li{display:flex;gap:8px;font-size:14px;color:var(--muted)}
+  .plan li::before{content:"✓";color:var(--primary);font-weight:700}
+  .plan .btn{margin-top:24px;width:100%;justify-content:center}
+
+  /* DEVICES */
+  .devs-section{border-top:1px solid rgba(38,38,58,.4);border-bottom:1px solid rgba(38,38,58,.4);background:rgba(26,26,38,.2)}
+  .devs{display:grid;gap:16px;grid-template-columns:repeat(2,1fr)}
+  @media(min-width:1024px){.devs{grid-template-columns:repeat(4,1fr)}}
+  .dev{border:1px solid var(--border);background:var(--card);border-radius:16px;padding:32px;text-align:center;transition:.2s}
+  .dev:hover{border-color:rgba(239,43,43,.4)}
+  .dev .emoji{font-size:36px}
+  .dev p{margin-top:14px;font-family:'Space Grotesk';font-weight:700}
+
+  /* DOWNLOAD */
+  .download-card{position:relative;overflow:hidden;border-radius:24px;border:1px solid rgba(239,43,43,.3);background:var(--grad);padding:56px 32px;text-align:center;max-width:960px;margin:0 auto;box-shadow:var(--glow)}
+  .download-card h2{font-family:'Space Grotesk';font-weight:900;font-size:clamp(32px,5vw,48px);color:#fff}
+  .download-card p{margin:16px auto 0;max-width:480px;color:rgba(255,255,255,.85)}
+  .download-card .ctas{margin-top:32px;display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+  .download-card .btn-white{background:var(--bg);color:var(--fg)}
+  .download-card .btn-white:hover{transform:scale(1.05)}
+  .download-card .btn-line{border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff}
+  .steps{max-width:760px;margin:48px auto 0;border:1px solid var(--border);background:var(--card);border-radius:24px;padding:32px}
+  .steps h3{font-family:'Space Grotesk';font-weight:900;font-size:clamp(22px,3vw,28px)}
+  .steps ol{list-style:none;margin-top:20px;display:flex;flex-direction:column;gap:12px}
+  .steps li{color:var(--muted);font-size:15px}
+  .steps li b{color:var(--fg)}
+  .steps .note{margin-top:20px;font-weight:600;color:var(--fg)}
+  .steps .ok{margin-top:20px;border:1px solid rgba(239,43,43,.3);background:rgba(239,43,43,.1);border-radius:16px;padding:16px;font-size:15px}
+  .steps .end{margin-top:16px;font-family:'Space Grotesk';font-weight:700;color:var(--fg)}
+
+  /* FAQ */
+  .faq{max-width:760px;margin:0 auto;padding:0 24px}
+  .faq-item{border:1px solid var(--border);background:var(--card);border-radius:16px;margin-bottom:12px;overflow:hidden}
+  .faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;padding:20px 24px;background:none;border:0;color:var(--fg);cursor:pointer;font-family:'Space Grotesk';font-weight:700;font-size:16px;text-align:left}
+  .faq-q .plus{color:var(--primary);font-size:24px;transition:transform .2s}
+  .faq-item.open .plus{transform:rotate(45deg)}
+  .faq-a{display:none;padding:0 24px 20px;color:var(--muted);font-size:14px}
+  .faq-item.open .faq-a{display:block}
+
+  /* FOOTER */
+  footer{border-top:1px solid rgba(38,38,58,.4);background:rgba(26,26,38,.2);margin-top:40px}
+  .footer-row{display:flex;flex-direction:column;align-items:center;gap:20px;padding:48px 24px}
+  @media(min-width:640px){.footer-row{flex-direction:row;justify-content:space-between}}
+  .footer-links{display:flex;flex-wrap:wrap;gap:24px;color:var(--muted);font-size:14px}
+  .footer-links a:hover{color:var(--fg)}
+  .copy{border-top:1px solid rgba(38,38,58,.4);text-align:center;padding:24px;font-size:12px;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-row">
+    <a href="#" class="logo"><span class="ico">▶</span>tv<span class="gradient">flix</span></a>
+    <nav class="nav-links">
+      <a href="#planos">Preços</a>
+      <a href="#dispositivos">Dispositivos</a>
+      <a href="#download">App</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a href="#planos" class="btn btn-primary nav-cta">🎁 Teste 30 Dias</a>
+    <button class="mobile-toggle" onclick="document.getElementById('mm').classList.toggle('open')">☰</button>
+  </div>
+  <div id="mm" class="mobile-menu">
+    <a href="#planos">Preços</a>
+    <a href="#dispositivos">Dispositivos</a>
+    <a href="#download">App</a>
+    <a href="#faq">FAQ</a>
+    <a href="#planos" class="btn btn-primary" style="justify-content:center">🎁 Teste 30 Dias</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-bg"><img src="hero-bg.jpg" alt=""></div>
+  <div class="badge">★ Atualizado para streaming 8K — A partir de $4.9/mês</div>
+  <h1 class="display">TVFlix — O Melhor Serviço<br><span class="gradient">IPTV Premium</span> de 2026</h1>
+  <p>Assista +18.000 canais ao vivo, +120.000 filmes e séries em qualidade 4K/8K. Streaming mundial em Smart TVs, Android, Firestick, MAG e mais — sem travamentos.</p>
+  <div class="hero-ctas">
+    <a href="#planos" class="btn btn-primary">🎁 Teste 30 Dias</a>
+    <a href="https://meusapp.site/aplicativo/tvflix-9?t=afec6fa95ed1ccd612e8" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">⬇ Baixar App</a>
+  </div>
+  <div class="hero-meta">
+    <span class="stars">★★★★★ <b style="color:var(--fg);margin-left:4px">4.9/5</b> — 12.000+ clientes</span>
+    <span>🛡 Pagamento seguro</span>
+    <span>⏱ Cancele quando quiser</span>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container grid-4">
+    <div class="feat"><div class="ico">⚡</div><h3>Sem Travamentos</h3><p>Servidores otimizados garantem streaming fluido em alta resolução.</p></div>
+    <div class="feat"><div class="ico">🛡</div><h3>14 Dias de Garantia</h3><p>Não gostou? Devolvemos seu dinheiro sem perguntas.</p></div>
+    <div class="feat"><div class="ico">🌎</div><h3>Cobertura Global</h3><p>Canais de todo o mundo: EUA, Brasil, Europa, Ásia e mais.</p></div>
+    <div class="feat"><div class="ico">⏱</div><h3>Ativação Instantânea</h3><p>Receba seu acesso em poucos minutos após a compra.</p></div>
+  </div>
+</section>
+
+<section id="planos" class="section">
+  <div class="container">
+    <div class="h-head">
+      <span class="kicker">Planos</span>
+      <h2 class="display">Planos IPTV Premium — <span class="gradient">Streaming 8K</span></h2>
+      <p>Economize até 60% • 14 dias de garantia • Melhor provedor IPTV de 2026</p>
+    </div>
+    <div class="plans" id="plans"></div>
+  </div>
+</section>
+
+<section id="dispositivos" class="section devs-section">
+  <div class="container">
+    <div class="h-head">
+      <h2 class="display">Funciona em <span class="gradient">Qualquer Dispositivo</span></h2>
+      <p>Compatível com todas as principais plataformas. Configure em minutos e comece a assistir.</p>
+    </div>
+    <div class="devs">
+      <div class="dev"><div class="emoji">📺</div><p>Smart TV</p></div>
+      <div class="dev"><div class="emoji">📱</div><p>Android &amp; iOS</p></div>
+      <div class="dev"><div class="emoji">💻</div><p>Windows &amp; Mac</p></div>
+      <div class="dev"><div class="emoji">📡</div><p>Firestick &amp; MAG</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="download" class="section">
+  <div class="container">
+    <div class="download-card">
+      <h2>Baixe o App TVFlix</h2>
+      <p>Disponível para Android, iOS, Smart TV, Firestick e mais. Leve a TVFlix para qualquer lugar.</p>
+      <div class="ctas">
+        <a href="https://meusapp.site/aplicativo/tvflix-9?t=afec6fa95ed1ccd612e8" target="_blank" rel="noopener noreferrer" class="btn btn-white">⬇ Baixar App</a>
+        <a href="#planos" class="btn btn-line">🎁 Teste 30 Dias</a>
+      </div>
+    </div>
+    <div class="steps">
+      <h3>📲 Passo a Passo para <span class="gradient">Instalação</span></h3>
+      <ol>
+        <li><b>1️⃣</b> Clique em <b>Baixar</b>.</li>
+        <li><b>2️⃣</b> Após concluir, clique em <b>Abrir arquivo</b>.</li>
+        <li><b>3️⃣</b> Se aparecer a opção <b>Configurações</b>, clique e ative a permissão necessária.</li>
+        <li><b>4️⃣</b> Depois, clique em <b>Instalar</b>.</li>
+        <li><b>5️⃣</b> Quando finalizar, clique em <b>Abrir</b>.</li>
+      </ol>
+      <p class="note">🔄 Em seguida:</p>
+      <ol>
+        <li><b>6️⃣</b> Vai aparecer a opção <b>Atualizar</b>, clique e autorize novamente.</li>
+        <li><b>7️⃣</b> Clique uma vez em <b>Voltar</b>.</li>
+        <li><b>8️⃣</b> Clique novamente em <b>Atualizar</b>.</li>
+        <li><b>9️⃣</b> Quando aparecer <b>Instalar</b>, clique para instalar.</li>
+        <li><b>🔟</b> Após concluir, o aplicativo aparecerá como <b>Desligado</b>.</li>
+      </ol>
+      <div class="ok">✅ Agora é só clicar no aplicativo, ativar a opção <b>Usar aplicativo</b> e permitir o acesso.</div>
+      <p class="end">🚀 Pronto! Aplicativo instalado e funcionando corretamente.</p>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="section">
+  <div class="h-head"><span class="kicker">FAQ</span><h2 class="display">Perguntas Frequentes</h2></div>
+  <div class="faq" id="faq"></div>
+</section>
+
+<footer>
+  <div class="footer-row container">
+    <a href="#" class="logo"><span class="ico">▶</span>tv<span class="gradient">flix</span></a>
+    <div class="footer-links"><a href="#">Termos</a><a href="#">Privacidade</a><a href="#">Suporte</a></div>
+  </div>
+  <div class="copy">© 2026 TVFlix. Todos os direitos reservados.</div>
+</footer>
+
+<script>
+  const features=["+18.000 Canais ao Vivo","+120.000 Filmes & Séries","Qualidade UHD, FHD, HD","Imagem 4K","99.9% de Uptime","Suporte 24/7","Guia de TV (EPG)","Canais Premium"];
+  const plans=[
+    {name:"3 Meses",old:"$49.9",price:"$29.9",month:"$9.9/mês"},
+    {name:"6 Meses",old:"$74.9",price:"$49.9",month:"$8.3/mês"},
+    {name:"12 Meses",old:"$99.9",price:"$69.9",month:"$5.8/mês",pop:true},
+    {name:"24 Meses",old:"$179.9",price:"$119.9",month:"$4.9/mês"},
+  ];
+  document.getElementById('plans').innerHTML=plans.map(p=>`
+    <div class="plan ${p.pop?'pop':''}">
+      ${p.pop?'<div class="tag">POPULAR</div>':''}
+      <div class="kicker">Premium IPTV</div>
+      <h3>${p.name}</h3>
+      <div class="old">${p.old}</div>
+      <div class="price">${p.price}</div>
+      <div class="month">${p.month}</div>
+      <ul>${features.map(f=>`<li>${f}</li>`).join('')}</ul>
+      <a href="#" class="btn ${p.pop?'btn-primary':'btn-outline'}">Assinar Agora</a>
+    </div>`).join('');
+
+  const faqs=[
+    {q:"O que é a TVFlix?",a:"A TVFlix é um serviço IPTV premium com +18.000 canais ao vivo e +120.000 filmes e séries em qualidade até 8K, disponível em todos os principais dispositivos."},
+    {q:"Como funciona o teste de 30 dias?",a:"Você ativa o teste com acesso completo. Caso não goste, devolvemos seu dinheiro sem perguntas dentro de 14 dias."},
+    {q:"Em quais dispositivos funciona?",a:"Smart TVs (Samsung, LG, Android TV), iOS, Android, Windows, Mac, Firestick, MAG e mais."},
+    {q:"Posso baixar o app?",a:"Sim, o app TVFlix está disponível para Android, iOS, Smart TV e Firestick."},
+  ];
+  document.getElementById('faq').innerHTML=faqs.map((f,i)=>`
+    <div class="faq-item ${i===0?'open':''}">
+      <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">${f.q}<span class="plus">+</span></button>
+      <div class="faq-a">${f.a}</div>
+    </div>`).join('');
+</script>
+</body>
+</html>
